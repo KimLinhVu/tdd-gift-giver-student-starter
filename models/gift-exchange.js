@@ -1,5 +1,60 @@
 const { BadRequestError } = require('../utils/errors')
 
+const quiz = [
+    {
+        question: "question #1",
+        answerChoices: [
+          "a. first answer choice",
+          "b. second answer choice",
+          "c. third answer choice",
+          "d. fourth answer choice",
+        ],
+    },
+    {
+        question: "question #2",
+        answerChoices: [
+            "a. first answer choice",
+            "b. second answer choice",
+            "c. third answer choice",
+            "d. fourth answer choice",
+        ],
+    },
+    {
+        question: "question #3",
+        answerChoices: [
+            "a. first answer choice",
+            "b. second answer choice",
+            "c. third answer choice",
+            "d. fourth answer choice",
+        ],
+    },
+    {
+        question: "question #4",
+        answerChoices: [
+            "a. first answer choice",
+            "b. second answer choice",
+            "c. third answer choice",
+            "d. fourth answer choice",
+        ],
+    },
+    {
+        question: "question #5",
+        answerChoices: [
+            "a. first answer choice",
+            "b. second answer choice",
+            "c. third answer choice",
+            "d. fourth answer choice",
+        ],
+    },
+]
+
+const score = {
+    a: 0,
+    b: 1,
+    c: 2,
+    d: 3
+}
+
 function getRandomIdx(length) {
     return Math.floor(Math.random() * length)
 }
@@ -55,6 +110,32 @@ class GiftExchange {
         }
 
         return result
+    }
+
+    static quiz() {
+        return quiz
+    }
+
+    static quizResults(userAnswers) {
+        let total = 0
+
+        userAnswers.forEach(element => {
+            total += score[element]
+        });
+
+        if (total < 2) {
+            return "personal care"
+        } else if (total < 5) {
+            return "clothing"
+        } else if (total < 8) {
+            return "accessories"
+        } else if (total < 11) {
+            return "home products"
+        } else if (total < 14) {
+            return "consumables"
+        } else {
+            return "technology"
+        }
     }
 }
 
